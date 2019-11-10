@@ -9,8 +9,7 @@ import java.sql.SQLException;
 
 public class DeptDaoImpl implements IDeptDao {
     @Override
-
-    public void addDept(DepartmentBean dept) throws SQLException {
+    public  void addDept(DepartmentBean dept) throws SQLException {
         String sql = "INSERT into T_DEPARTMENT(DEPARTMENT_ID,DEPARTMENT_NAME,MANAGER,CREATE_TIME) values (?,?,?,sysdate)";
         Object[] param = {dept.getDepartmentId(),dept.getDepartmentName(),dept.getName()};
         DBUtil.executeUpdate(sql,param);
@@ -26,8 +25,7 @@ public class DeptDaoImpl implements IDeptDao {
 
     }
 
-    @Override
-    public ResultSet searchDept(String key) throws SQLException {
+    public static ResultSet searchDept(String key) throws SQLException {
         String sql = "select * from   T_DEPARTMENT where DEPARTMENT_NAME = ?";
         Object[] param = {key};
         ResultSet query = DBUtil.Query(sql, param);

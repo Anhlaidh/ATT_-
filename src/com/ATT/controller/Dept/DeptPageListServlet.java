@@ -1,6 +1,6 @@
 package com.ATT.controller.Dept;
 
-import com.ATT.dao.initializeList;
+import com.ATT.Service.DeptServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,18 +20,20 @@ public class DeptPageListServlet extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         String management = request.getParameter("management");
         System.out.println(management);
-        LinkedList list = null;
-        try {
-            list = initializeList.get(management,"DepartmentBean");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        String[] names = {management};
+        LinkedList linkedList = DeptServiceImpl.initList(names);
+//        LinkedList list = null;
+//        try {
+//            list = initializeList.get(management,"DepartmentBean");
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
         session = request.getSession();
-        session.setAttribute("departmentList",list);
-response.sendRedirect(request.getContextPath()+"dept/deptSearch.jsp");
-//        DepartmentBean departmentBean = (DepartmentBean) list.get(0);
-//        System.out.println(departmentBean.getName());
+        session.setAttribute("departmentList",linkedList);
+        response.sendRedirect(request.getContextPath()+"dept/deptSearch.jsp");
+////        DepartmentBean departmentBean = (DepartmentBean) list.get(0);
+////        System.out.println(departmentBean.getName());
 
 
     }

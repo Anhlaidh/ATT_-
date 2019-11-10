@@ -8,6 +8,7 @@ public class DBUtil {
     static private final String USERNAME="scott";
     static private final String PWD="tiger";
 
+
     public static Connection Conncet(){
 
         try {
